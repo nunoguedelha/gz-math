@@ -115,34 +115,18 @@ void defineMathColor(py::module &m, const std::string &typestr)
    .def("set_from_abgr",
         &Class::SetFromABGR,
         "Set from uint32 ABGR packed value")
-   .def("r",
-        py::overload_cast<>(&Class::R, py::const_),
-        "Get the red value")
-   .def("g",
-        py::overload_cast<>(&Class::G, py::const_),
-        "Get the green value")
-   .def("b",
-        py::overload_cast<>(&Class::B, py::const_),
-        "Get the blue value")
-   .def("a",
-        py::overload_cast<>(&Class::A, py::const_),
-        "Get the alpha value")
-   .def("r",
-        py::overload_cast<const float>(&Class::R),
-        "Set the red value",
-        "_r"_a)
-   .def("g",
-        py::overload_cast<const float>(&Class::G),
-        "Set the green value",
-        "_g"_a)
-   .def("b",
-        py::overload_cast<const float>(&Class::B),
-        "Set the blue value",
-        "_b"_a)
-   .def("a",
-        py::overload_cast<const float>(&Class::A),
-        "Set the alpha value",
-        "_a"_a)
+   .def_property("r",
+                 py::overload_cast<>(&Class::R, py::const_),
+                 py::overload_cast<const float>(&Class::R))
+   .def_property("g",
+                 py::overload_cast<>(&Class::G, py::const_),
+                 py::overload_cast<const float>(&Class::G))
+   .def_property("b",
+                 py::overload_cast<>(&Class::B, py::const_),
+                 py::overload_cast<const float>(&Class::B))
+   .def_property("a",
+                 py::overload_cast<>(&Class::A, py::const_),
+                 py::overload_cast<const float>(&Class::A))
    .def("__str__", toString)
    .def("__repr__", toString)
    .def("__copy__", [](const Class &self) {
